@@ -20,20 +20,20 @@ class DataTest {
 
     @Test
     void shouldLoginActiveUser() {
-         Configuration.holdBrowserOpen = true;
-      UserInfo user = DataGenerator.Registration.generateUser("active");
-      activeUser(user);
+        Configuration.holdBrowserOpen = true;
+        UserInfo user = DataGenerator.Registration.generateUser("active");
+        sendRequest(user);
         $(".input__box>[type='text']").setValue(user.getLogin());
         $(".input__box>[type='password']").setValue(user.getPassword());
         $(".button").click();
         $(withText("Личный кабинет")).shouldBe(Condition.visible);
-        }
+    }
 
     @Test
     void shouldLoginBlockedUser() {
         Configuration.holdBrowserOpen = true;
         UserInfo user = DataGenerator.Registration.generateUser("blocked");
-        activeUser(user);
+        sendRequest(user);
         $(".input__box>[type='text']").setValue(user.getLogin());
         $(".input__box>[type='password']").setValue(user.getPassword());
         $(".button").click();
@@ -43,7 +43,7 @@ class DataTest {
     void shouldWrongLogin() {
         Configuration.holdBrowserOpen = true;
         UserInfo user = DataGenerator.Registration.generateUser("active");
-        activeUser(user);
+        sendRequest(user);
         var anotherLogin = generateLogin();
         $(".input__box>[type='text']").setValue(anotherLogin);
         $(".input__box>[type='password']").setValue(user.getPassword());
@@ -54,7 +54,7 @@ class DataTest {
     void shouldWrongPassword() {
         Configuration.holdBrowserOpen = true;
         UserInfo user = DataGenerator.Registration.generateUser("active");
-        activeUser(user);
+        sendRequest(user);
         var anotherPassword = generatePassword();
         $(".input__box>[type='text']").setValue(user.getLogin());
         $(".input__box>[type='password']").setValue(anotherPassword);

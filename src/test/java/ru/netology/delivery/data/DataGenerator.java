@@ -23,18 +23,7 @@ public class DataGenerator {
             .log(LogDetail.ALL)
             .build();
 
-    public static void activeUser(UserInfo user) {
-        // сам запрос
-        given() // "дано"
-                .spec(requestSpec) // указываем, какую спецификацию используем
-                .body(new Gson().toJson(user)) // передаём в теле объект, который будет преобразован в JSON
-                .when() // "когда"
-                .post("/api/system/users") // на какой путь, относительно BaseUri отправляем запрос
-                .then() // "тогда ожидаем"
-                .statusCode(200); // код 200 OK
-    }
-
-    public static void blockedUser(UserInfo user) {
+    public static void sendRequest(UserInfo user) {
         // сам запрос
         given() // "дано"
                 .spec(requestSpec) // указываем, какую спецификацию используем
